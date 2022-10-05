@@ -2,6 +2,7 @@ package racingcar.utils;
 
 import racingcar.entities.Car;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -28,5 +29,25 @@ public class Game {
             }
         }
         return answer;
+    }
+
+    public ArrayList<Car> pickWinnerCars(List<Car> cars) {
+        ArrayList<Car> answers = new ArrayList<>();
+        int maxDistance = getMaxDistance(cars);
+        for (Car car : cars) {
+            if(car.isCarWinner(maxDistance))
+                answers.add(car);
+        }
+        return answers;
+    }
+
+    private static int getMaxDistance(List<Car> cars) {
+        int maxDistance = 0;
+
+        for (Car car : cars) {
+            maxDistance = car.getFurtherDistance(maxDistance);
+
+        }
+        return maxDistance;
     }
 }
