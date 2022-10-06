@@ -1,10 +1,9 @@
-package racingcar;
+package racingcar.utils;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.entities.Car;
-import racingcar.utils.Game;
 
 import java.util.Arrays;
 
@@ -48,6 +47,11 @@ public class GameTest {
 
         Game game = new Game();
         assertThat(game.pickWinnerCars(Arrays.asList(car1, car2, car3, car4)).equals(Arrays.asList(car2, car4))).isTrue();
+
+    }
+
+    @Test
+    void print() {
 
     }
 }
