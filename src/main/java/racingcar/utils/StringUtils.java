@@ -12,7 +12,7 @@ public class StringUtils {
         StringBuilder winnerCarsNameString = new StringBuilder();
         winnerCarsNameString.append(winnerCars.remove(0).getName());
         for(Car car :winnerCars)
-            winnerCarsNameString.append(", ").append(car.getName());
+            winnerCarsNameString.append(SPLIT_EXPRESSION).append(" ").append(car.getName());
 
         return winnerCarsNameString.toString();
 
