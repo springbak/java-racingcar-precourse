@@ -14,12 +14,24 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StringUtilsTest {
 
+    private Car car1;
+    private Car car2;
+    private Car car3;
+    private Car car4;
 
-    private static NamesInput INPUT_STRING_TRUE_CASE  = null;
+    @BeforeEach
+    void initTest() {
+        car1 = new Car(1, "BOMI");
+        car2 = new Car(3, "SUBINI");
+        car3 = new Car(2, "DARAMI");
+        car4 = new Car(3, "SUJINI");
+    }
+
+    public static NamesInput INPUT_STRING_TRUE_CASE = null;
 
     @BeforeEach
     void setUp() {
-         INPUT_STRING_TRUE_CASE = new NamesInput("pobi,crong,honux");
+        INPUT_STRING_TRUE_CASE = new NamesInput("pobi,crong,honux");
     }
 
     @DisplayName("입력된 String값으로 이름들을 받는 기능 테스트")
@@ -35,7 +47,7 @@ class StringUtilsTest {
     @DisplayName("입력된 String값으로 이름들을 받는 기능 Exception 테스트")
     @Test
     void getNamesFromUserInputExceptionTest() {
-       assertThrows(IllegalArgumentException.class, () -> new NamesInput(""));
+        assertThrows(IllegalArgumentException.class, () -> new NamesInput(""));
     }
 
     @DisplayName("입력된 String 값으로 자동차 객체를 생성하는 테스트")
@@ -43,7 +55,26 @@ class StringUtilsTest {
     void createCarsByUserInputTest() {
         ArrayList<Car> cars = INPUT_STRING_TRUE_CASE.constructCars();
 
-        assertThat(Arrays.equals(new String[]{cars.get(0).getName(),cars.get(1).getName(),cars.get(2).getName()} , new String[]{"pobi", "crong", "honux"})).isTrue();
+        assertThat(Arrays.equals(new String[]{cars.get(0).getName(), cars.get(1).getName(), cars.get(2).getName()}, new String[]{"pobi", "crong", "honux"})).isTrue();
+
+    }
+
+    @DisplayName("공동 우승자가 있을 때 이름들 사이에 ,를 삽입하는 기능")
+    @Test
+    void insertCommaBetweenWinnersNameTest() {
+        Game game = new Game();
+        StringUtils stringUtils = new StringUtils();
+        ArrayList<Car> winnerCars = game.pickWinnerCars(Arrays.asList(car1, car2, car3, car4));
+        assertThat(stringUtils.insertCommaBetweenWinnersName(winnerCars).equals("SUBINI, SUJINI")).isTrue();
+
+    }
+    @DisplayName("우승자가 한 명 있을 때 이름들 사이에 ,를 삽입하는 기능이 동작하지 않고 넘어가는지 확인하는 테스트")
+    @Test
+    void insertCommaBetweenWinnerNameTest() {
+        Game game = new Game();
+        StringUtils stringUtils = new StringUtils();
+        ArrayList<Car> winnerCars = game.pickWinnerCars(Arrays.asList(car1, car2, car3));
+        assertThat(stringUtils.insertCommaBetweenWinnersName(winnerCars).equals("SUBINI")).isTrue();
 
     }
 }
