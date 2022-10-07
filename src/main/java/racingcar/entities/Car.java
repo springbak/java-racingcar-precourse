@@ -50,6 +50,9 @@ public class Car {
         if (move.isCarMove(this.randomNumber)) {
             this.distance++;
             this.isThisCarJustMoved = true;
+//            System.out.println(this.getName()+"차는 "+this.randomNumber+"값이 나와서 움직였어요. 현재 위치는 "+this.distance);
+        }else{
+//            System.out.println(this.getName()+"차는 "+this.randomNumber+"값이 나와서 움직이지 않았어요. 현재 위치는 "+this.distance);
         }
     }
 

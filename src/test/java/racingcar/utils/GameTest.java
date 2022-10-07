@@ -50,8 +50,4 @@ public class GameTest {
 
     }
 
-    @Test
-    void print() {
-
-    }
 }
