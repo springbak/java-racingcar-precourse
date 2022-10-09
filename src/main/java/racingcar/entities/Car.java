@@ -7,6 +7,8 @@ public class Car {
     public static final int INIT_DISTANCE = 0;
     public static final int RANDOM_NUMBER_START = 0;
     public static final int RANDOM_NUMBER_END = 9;
+    public static final String DISTANCE_MARK = "-";
+    private String distanceBar;
     private int distance;
     private final String name;
     private int randomNumber;
@@ -23,6 +25,7 @@ public class Car {
         this.name = name;
         this.distance = INIT_DISTANCE;
         this.isThisCarJustMoved = false;
+        this.distanceBar = "";
     }
 
 
@@ -43,6 +46,8 @@ public class Car {
         return maxDistance == this.getDistance();
     }
 
+
+
     public void proceedGameOnce() {
         Move move = new Move();
         initIsThisCarJustMoved();
@@ -50,8 +55,9 @@ public class Car {
         if (move.isCarMove(this.randomNumber)) {
             this.distance++;
             this.isThisCarJustMoved = true;
+            this.distanceBar+= DISTANCE_MARK;
 //            System.out.println(this.getName()+"차는 "+this.randomNumber+"값이 나와서 움직였어요. 현재 위치는 "+this.distance);
-        }else{
+        } else {
 //            System.out.println(this.getName()+"차는 "+this.randomNumber+"값이 나와서 움직이지 않았어요. 현재 위치는 "+this.distance);
         }
     }
@@ -66,5 +72,8 @@ public class Car {
 
     public int getRandomNumber() {
         return randomNumber;
+    }
+    public String getDistanceBar() {
+        return distanceBar;
     }
 }
