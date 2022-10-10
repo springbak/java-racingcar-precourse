@@ -12,7 +12,7 @@ import java.util.Arrays;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class StringUtilsTest {
+class StringHandlerTest {
 
     private Car car1;
     private Car car2;
@@ -63,18 +63,18 @@ class StringUtilsTest {
     @Test
     void insertCommaBetweenWinnersNameTest() {
         Game game = new Game();
-        StringUtils stringUtils = new StringUtils();
+        StringHandler stringHandler = new StringHandler();
         ArrayList<Car> winnerCars = game.pickWinnerCars(Arrays.asList(car1, car2, car3, car4));
-        assertThat(stringUtils.insertCommaBetweenWinnersName(winnerCars).equals("SUBINI, SUJINI")).isTrue();
+        assertThat(stringHandler.insertCommaBetweenWinnersName(winnerCars).equals("SUBINI, SUJINI")).isTrue();
 
     }
     @DisplayName("우승자가 한 명 있을 때 이름들 사이에 ,를 삽입하는 기능이 동작하지 않고 넘어가는지 확인하는 테스트")
     @Test
     void insertCommaBetweenWinnerNameTest() {
         Game game = new Game();
-        StringUtils stringUtils = new StringUtils();
+        StringHandler stringHandler = new StringHandler();
         ArrayList<Car> winnerCars = game.pickWinnerCars(Arrays.asList(car1, car2, car3));
-        assertThat(stringUtils.insertCommaBetweenWinnersName(winnerCars).equals("SUBINI")).isTrue();
+        assertThat(stringHandler.insertCommaBetweenWinnersName(winnerCars).equals("SUBINI")).isTrue();
 
     }
 }
