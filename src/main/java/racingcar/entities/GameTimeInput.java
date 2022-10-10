@@ -1,17 +1,31 @@
 package racingcar.entities;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class GameTimeInput {
 
-
-    private final int gameTime;
+    private int gameTime;
 
     public GameTimeInput(String stringInput) {
-        try {
-            this.gameTime = Integer.parseInt(stringInput);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR]입력값이 잘못 되었습니다. 숫자만 입력해주세요");
+        while (true) {
+            try {
+                validateGameTimeInput(stringInput);
+                this.gameTime = Integer.parseInt(stringInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                stringInput = readLine();
+            }
         }
     }
+
+    private void validateGameTimeInput(String stringInput) {
+        if (stringInput.equals("0"))
+            throw new IllegalArgumentException(ErrorScenario.GAMETIMEINPUT_IS_ZERO.getErrorPhrases());
+        if (!stringInput.matches("[0-9]+"))
+            throw new IllegalArgumentException(ErrorScenario.WRONG_GAMETIMEINPUT.getErrorPhrases());
+    }
+
     public int getGameTime() {
         return gameTime;
     }
