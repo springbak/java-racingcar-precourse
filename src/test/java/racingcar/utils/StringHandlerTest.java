@@ -1,10 +1,8 @@
 package racingcar.utils;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.Application;
 import racingcar.entities.*;
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class StringHandlerTest extends NsTest {
+class StringHandlerTest{
 
     private Car car1;
     private Car car2;
@@ -83,10 +81,5 @@ class StringHandlerTest extends NsTest {
         ArrayList<Car> winnerCars = game.pickWinnerCars(Arrays.asList(car1, car2, car3));
         assertThat(stringHandler.insertCommaBetweenWinnersName(winnerCars).equals("SUBINI")).isTrue();
 
-    }
-
-    @Override
-    public void runMain() {
-        Application.main(new String[]{});
     }
 }

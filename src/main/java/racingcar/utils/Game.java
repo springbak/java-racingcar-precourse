@@ -14,47 +14,24 @@ public class Game {
         System.out.println("\n");
     }
 
-    public int pickWinner(List<Integer> distances) {
-        int max = 0;
-        int answer = 0;
-        for (int i = 0; i < distances.size(); i++) {
-            if (distances.get(i) > max) {
-                max = distances.get(i);
-                answer = i;
-
-            }
-        }
-        return answer;
-    }
-
-    public Car pickWinnerCar(List<Car> cars) {
-        int max = 0;
-        Car answer = null;
-        for (Car car : cars) {
-            if (car.getDistance() > max) {
-                max = car.getDistance();
-                answer = car;
-            }
-        }
-        return answer;
-    }
-
     public ArrayList<Car> pickWinnerCars(List<Car> cars) {
-        ArrayList<Car> answers = new ArrayList<>();
+        ArrayList<Car> winnerCars = new ArrayList<>();
         int maxDistance = getMaxDistance(cars);
         for (Car car : cars) {
-            if(car.isCarWinner(maxDistance))
-                answers.add(car);
+            checkIfThisCarIsWinner(winnerCars, maxDistance, car);
         }
-        return answers;
+        return winnerCars;
+    }
+
+    private static void checkIfThisCarIsWinner(ArrayList<Car> winnerCars, int maxDistance, Car car) {
+        if(car.isCarWinner(maxDistance))
+            winnerCars.add(car);
     }
 
     private static int getMaxDistance(List<Car> cars) {
         int maxDistance = 0;
-
         for (Car car : cars) {
             maxDistance = car.getFurtherDistance(maxDistance);
-
         }
         return maxDistance;
     }

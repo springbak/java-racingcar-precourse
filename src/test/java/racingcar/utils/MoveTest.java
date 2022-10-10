@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
-import static racingcar.utils.StringUtilsTest.INPUT_STRING_TRUE_CASE;
+import static racingcar.utils.StringHandlerTest.INPUT_STRING_TRUE_CASE;
 
 public class MoveTest {
     private static Move move;
@@ -56,15 +56,4 @@ public class MoveTest {
 
     }
 
-    @DisplayName("한 게임이 끝난 후 움직인 차들을 식별하는 테스트")
-    @Test
-    void pickMovedCars() {
-        for (Car car : cars)
-            car.proceedGameOnce();
-        assumingThat(cars.get(0).getRandomNumber() < 4, () -> {
-            System.out.println("randomnumber : " + cars.get(0).getRandomNumber() + "자동차는 움직이지 않습니다");
-            assertThat(cars.get(0).getDistance() == 0).isTrue();
-        });
-        move.getJustMovedCars(cars);
-    }
 }

@@ -23,24 +23,6 @@ public class GameTest {
         car4 = new Car(3, "SUJINI");
     }
 
-    @DisplayName("List중 우승을 결정하는 기능")
-    @Test
-    void pickWinnerTest() {
-
-        Game game = new Game();
-        assertThat(game.pickWinner(Arrays.asList(1, 3, 2)) == 1).isTrue();
-
-    }
-
-    @DisplayName("우승자동차를 결정하는 기능")
-    @Test
-    void pickWinnerCarTest() {
-
-        Game game = new Game();
-        assertThat(game.pickWinnerCar(Arrays.asList(car1, car2, car3)).equals(car2)).isTrue();
-
-    }
-
     @DisplayName("우승자동차들을 결정하는 기능")
     @Test
     void pickWinnerCarsTest() {
