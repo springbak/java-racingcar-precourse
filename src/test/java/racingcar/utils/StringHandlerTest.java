@@ -1,18 +1,20 @@
 package racingcar.utils;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.entities.Car;
-import racingcar.entities.NamesInput;
+import racingcar.Application;
+import racingcar.entities.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
-import static org.assertj.core.api.AssertionsForClassTypes.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class StringHandlerTest {
+class StringHandlerTest extends NsTest {
 
     private Car car1;
     private Car car2;
@@ -47,7 +49,12 @@ class StringHandlerTest {
     @DisplayName("입력된 String값으로 이름들을 받는 기능 Exception 테스트")
     @Test
     void getNamesFromUserInputExceptionTest() {
-        assertThrows(IllegalArgumentException.class, () -> new NamesInput(""));
+        assertThrows(NoSuchElementException.class, () -> new NamesInput(""));
+    }
+    @DisplayName("입력된 이름이 하나일때 (COMMA가 없는) 하나로만 계속할것인지 확인하는 테스트")
+    @Test
+    void isGameProceedWithOneCarTest() {
+        assertThrows(NoSuchElementException.class, () -> new IsGameProceedWithOneCar("4"));
     }
 
     @DisplayName("입력된 String 값으로 자동차 객체를 생성하는 테스트")
@@ -76,5 +83,10 @@ class StringHandlerTest {
         ArrayList<Car> winnerCars = game.pickWinnerCars(Arrays.asList(car1, car2, car3));
         assertThat(stringHandler.insertCommaBetweenWinnersName(winnerCars).equals("SUBINI")).isTrue();
 
+    }
+
+    @Override
+    public void runMain() {
+        Application.main(new String[]{});
     }
 }
