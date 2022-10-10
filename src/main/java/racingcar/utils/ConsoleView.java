@@ -3,7 +3,6 @@ package racingcar.utils;
 import racingcar.entities.GameScenario;
 import racingcar.entities.GameTimeInput;
 import racingcar.entities.NamesInput;
-
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class ConsoleView {
@@ -16,5 +15,9 @@ public class ConsoleView {
     public GameTimeInput getGameTimeInput() {
         System.out.println(GameScenario.ASK_GAME_TIMES.getGamePhrases());
         return new GameTimeInput(readLine());
+    }
+
+    public void announceWinner(String winnersName) {
+        System.out.print(GameScenario.ANNOUNCE_WINNER.getGamePhrases() + winnersName);
     }
 }
