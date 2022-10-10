@@ -23,13 +23,13 @@ public class NamesInput {
                 break;
 
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
                 input = readLine();
             }
         }
     }
 
-    private void validateNameInput() {
+    private void validateNameInput() throws IllegalArgumentException{
         if (Arrays.equals(this.names, new String[]{""}))
             throw new IllegalArgumentException(ErrorScenario.NULL_NAME_INPUT.getErrorPhrases());
         if (this.names.length == 1)
@@ -41,7 +41,6 @@ public class NamesInput {
     private void divideNamesFromInput(String input) {
         try {
             this.names = input.split(SPLIT_EXPRESSION);
-            System.out.println("this.names = " + Arrays.toString(this.names));
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorScenario.WRONG_NAME_INPUT_BASIC.getErrorPhrases());
         }
@@ -54,9 +53,10 @@ public class NamesInput {
             throw new IllegalArgumentException(ErrorScenario.ASK_RACING_CARS_NAME_AGAIN.getErrorPhrases());
     }
 
-    private void validateNameLength(String name) {
+    private void validateNameLength(String name)throws IllegalArgumentException {
         if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(ErrorScenario.OVER_MAX_NAME_LENGTH.getErrorPhrases());
+//            throw new IllegalArgumentException("[ERROR]");
         }
     }
 

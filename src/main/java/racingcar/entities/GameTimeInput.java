@@ -13,7 +13,7 @@ public class GameTimeInput {
                 this.gameTime = Integer.parseInt(stringInput);
                 break;
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
                 stringInput = readLine();
             }
         }

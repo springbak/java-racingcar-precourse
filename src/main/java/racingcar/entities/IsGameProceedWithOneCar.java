@@ -13,7 +13,7 @@ public class IsGameProceedWithOneCar {
                 validateIsNameIsOneInput(input);
                 break;
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
                 input=readLine();
             }
         }
