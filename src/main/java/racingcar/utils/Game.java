@@ -6,6 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    public static void playGame(ArrayList<Car> cars) {
+        for (Car car : cars) {
+            car.proceedGameOnce();
+            System.out.println(car.getName() + " : " + car.getDistanceBar());
+        }
+        System.out.println("\n");
+    }
+
     public int pickWinner(List<Integer> distances) {
         int max = 0;
         int answer = 0;
